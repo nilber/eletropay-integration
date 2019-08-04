@@ -9,11 +9,9 @@ We need your application to have a private API (for security reasons we recommen
   ### Register
 We need to register the eletropay user on your system, a way to associate the POS with your company.
 
-**URL** : `"/v1/client"`
+**URL** : `"/v1/clients"`
 
 **Method** : `POST`
-
-**Auth required** : Optional
 
 **Data constraints**
 
@@ -55,8 +53,6 @@ Method for obtaining an address on your platform.
 
 **Method** : `GET`
 
-**Auth required** : Optional
-
 **Data constraints**
 
 | Parameter | Description |
@@ -85,3 +81,47 @@ Method for obtaining an address on your platform.
 
 This address will be forwarded to POS.
 
+
+
+
+  ### Callback when detecting a payment
+Use this function to notify the POS that the payment has been successfully detected.
+This endpoint will be informed by EletroPay, below the example request that should be executed.
+
+**URL** : `"/v1/payments/:key/:currency/"`
+
+**Method** : `POST`
+
+**Data constraints**
+
+```json
+{
+  "amount": [transfer amount],
+  "confirmations": [amount of confirmations],
+  "address":"[transaction address]",
+  "txid": "[transaction identifier, recommended to use txid obtained from blockchain for transaction]"
+}
+```
+
+**Data example**
+
+```json
+{
+  "amount": 0.00028443,
+  "confirmations": 5,
+  "address":"Xc5DnvSCAuB9PXU7p35Sp6FCAPHU7Ge6Cr",
+  "txid": "f23f2dfb3c842fe025c9127f26c51482e7565fd180d8e84fe803cdd4baed869"
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+OK
+```
+
+You can update the commits field and make further use of this API when you reach the required amount of commits on your platform.
