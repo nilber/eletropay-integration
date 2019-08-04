@@ -124,4 +124,4 @@ This endpoint will be informed by EletroPay, below the example request that shou
 OK
 ```
 
-You can update the commits field and make further use of this API when you reach the required amount of commits on your platform.
+You can update the confirmations field and make further use of this API when you reach the required amount of confirmations on your platform.
